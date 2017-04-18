@@ -1,0 +1,9 @@
+/node_modules/
+
+.idea/*
+!.idea/*/
+.idea/copyright/*
+.idea/inspectionProfiles/*
+.idea/libraries/*
+.idea/dictionaries/
+.idea/
