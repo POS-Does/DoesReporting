@@ -9,17 +9,12 @@ router.post('/', function (req, res, next) {
     if (rec === 'pdf') {
         rec = 'phantom-pdf';
     }
-    reportService().renderReport(name, rec, req.body.payload, res)
-});
-
-router.get('/', function (req, res, next) {
-    var name = 'ticket';
-    var rec = 'pdf';
-    res.type('application/' + rec);
-    if (rec === 'pdf') {
-        rec = 'phantom-pdf';
-    }
-    reportService().renderReport(name, rec, {"foo":"bacon"}, res)
+    console.log('Report process: ' + name);
+    reportService().renderReport(name, rec, req.body.payload)
+        .then(function (data) {
+            data.stream.pipe(res);
+            console.log('Report completed: ' + name);
+    });
 });
 
 module.exports = router;
