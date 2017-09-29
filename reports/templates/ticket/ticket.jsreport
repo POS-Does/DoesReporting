@@ -1,7 +1,135 @@
+<h1>HELLO</h1>
+
 <style>
-    h1 {
-       color: red;
+    .receipt {
+        margin: 1% 1%;
+    }
+
+    .company {
+        text-align: center;
+    }
+
+    .company span {
+        display: block;
+    }
+
+    .line-block {
+        text-align: center;
+    }
+
+    .small {
+        font-size: 0.75em;
+    }
+
+    .normal {
+        font-size: 1.0em;
+    }
+
+    .large {
+        font-size: 1.25em;
+    }
+
+    .left {
+        text-align: left;
+    }
+
+    .center {
+        text-align: center;
+    }
+
+    .right {
+        text-align: right;
+    }
+
+    .modifier {
+        margin-left: 5%;
+    }
+
+    table {
+        width: 100%;
     }
 </style>
 
-<h1>Hello {{:foo}}</h1>
+<div class="receipt">
+    <div class="company">
+        <span>{{:company.COMPANY_NAME}}</span>
+        <span>{{:company.ADDRESS_FIRST}}</span>
+        {{if company.ADDRESS_SECOND !== null}}
+            <span>{{:company.ADDRESS_SECOND}}</span>
+        {{/if}}
+        <span>{{:company.ADDRESS_CITY}}, {{:company.ADDRESS_STATE}} {{:company.ADDRESS_ZIP}}</span>
+        <span>{{:company.COMPANY_TELEPHONE}}</span>
+    </div>
+
+    {{if LINE_BLOCK_TOP}}
+    <div class="line-block">
+        {{for LINE_BLOCK_TOP}}
+            <span class="{{:TEXT_SIZE}} {{:textAlignment}}">{{:CONTENT}}</span>
+        {{/for}}
+    </div>
+    {{/if}}
+
+    <div class="ticket-info">
+        <table>
+            <tr>
+                <td class="left">Server: {{:ticket.USER_NAME}}</td>
+                <td class="right">{{:ticket.DATE}}</td>
+            </tr>
+            <tr>
+                <td class="left">
+                    {{if ticket.TABLE_NUMBER}}
+                        Table: {{:ticket.TABLE_NUMBER}}
+                    {{else ticket.CUSTOMER_NAME}}
+                        Guest: {{:ticket.CUSTOMER_NAME}}
+                    {{/if}}
+                </td>
+                <td class="right">{{:ticket.TIME}}</td>
+            </tr>
+            <tr>
+                <td class="left">Guests: {{:ticket.NUMBER_OF_GUESTS}}</td>
+                <td class="right">{{:ticket.ID}}</td>
+            </tr>
+        </table>
+    </div>
+
+    <div class="items">
+        <table>
+            {{for ticket.ITEMS}}
+                <tr>
+                    <td class="left">{{:ITEM_NAME}}</td>
+                    <td class="right">${{:ITEM_PRICE}}</td>
+                </tr>
+                {{for ITEM_MODIFIERS}}
+                    <tr>
+                        <td class="left modifier">{{:MODIFIER_NAME}}</td>
+                        {{if MODIFIER_PRICE}}
+                            <td class="right">${{:MODIFIER_PRICE}}</td>
+                        {{/if}}
+                    </tr>
+                {{/for}}
+            {{/for}}
+        </table>
+    </div>
+
+    <div class="totals">
+        <table>
+            <tr>
+                <td class="left"></td>
+                <td class="right"></td>
+            </tr>
+            <tr></tr>
+            <tr>
+
+            </tr>
+        </table>
+    </div>
+
+    {{if LINE_BLOCK_BOTTOM}}
+    <div class="line-block">
+        {{for LINE_BLOCK_BOTTOM}}
+            <span class="{{:textSize}} {{:textAlignment}}">{{:content}}</span>
+        {{/for}}
+    </div>
+    {{/if}}
+</div>
+

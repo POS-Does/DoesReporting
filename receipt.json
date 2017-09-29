@@ -1,0 +1,79 @@
+{
+    "company": {
+        "COMPANY_NAME": "Brent's Burgers",
+        "ADDRESS_FIRST": "123 Main Street",
+        "ADDRESS_SECOND": "Suite 666",
+        "ADDRESS_CITY": "Miami",
+        "ADDRESS_STATE": "FL",
+        "ADDRESS_ZIP": "33333",
+        "COMPANY_TELEPHONE": "(305) 666-6666"
+    },
+    "LINE_BLOCK_TOP": [
+        {
+            "TEXT_SIZE": "small",
+            "CONTENT": "EaT sOmE pIzZa"
+        },
+        {
+            "TEXT_SIZE": "normal",
+            "CONTENT": "EaT sOmE pIzZa"
+        },
+        {
+            "TEXT_SIZE": "large",
+            "CONTENT": "EaT sOmE pIzZa"
+        }
+    ],
+    "ticket": {
+        "USER_NAME": "Bob",
+        "DATE": "01/01/19XX",
+        "TIME": "11:59 PM",
+        "TABLE_NUMBER": "1",
+        "NUMBER_OF_GUESTS": "77",
+        "ID": "00001",
+        "ITEMS": [
+            {
+                "ITEM_NAME": "qweqwe",
+                "ITEM_PRICE": "0.99",
+                "ITEM_MODIFIERS": [
+                    {
+                        "MODIFIER_NAME": "No peanuts",
+                        "MODIFIER_PRICE": null
+                    },
+                    {
+                        "MODIFIER_NAME": "Extra peanuts",
+                        "MODIFIER_PRICE": "9.99"
+                    }
+                ]
+            },
+            {
+                "ITEM_NAME": "qweqwe",
+                "ITEM_PRICE": "0.99",
+                "ITEM_MODIFIERS": [
+                    {
+                        "MODIFIER_NAME": "No peanuts",
+                        "MODIFIER_PRICE": null
+                    },
+                    {
+                        "MODIFIER_NAME": "Extra peanuts",
+                        "MODIFIER_PRICE": "9.99"
+                    }
+                ]
+            }
+        ],
+
+        "LINE_BLOCK_BOTTOM": [
+            {
+                "TEXT_SIZE": "small",
+                "CONTENT": "EaT sOmE pIzZa"
+            },
+            {
+                "TEXT_SIZE": "normal",
+                "CONTENT": "EaT sOmE pIzZa"
+            },
+            {
+                "TEXT_SIZE": "large",
+                "CONTENT": "EaT sOmE pIzZa"
+            }
+        ]
+        
+    }
+}

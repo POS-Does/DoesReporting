@@ -5,6 +5,7 @@ var reportService = require('../jsreportservice');
 router.post('/', function (req, res, next) {
     var name = req.body.name;
     var rec = req.body.recipe ? req.body.recipe : 'html';
+    var arguments = req.body.arguments ? req.body.arguments : {};
     // res.type('application/' + rec);
     if (rec === 'pdf') {
         rec = 'phantom-pdf';
