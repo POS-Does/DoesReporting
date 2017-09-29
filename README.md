@@ -3,7 +3,7 @@
 ## Overview
 
 Tested with:
-- node v: 6.10.0
+- node v: 6.10.0, 6.11.3
 - npm V: 3.10.10
 
 ## Installing

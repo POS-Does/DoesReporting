@@ -10,15 +10,15 @@
     },
     "LINE_BLOCK_TOP": [
         {
-            "TEXT_SIZE": "small",
+            "TEXT_CLASS": "small italic underline",
             "CONTENT": "EaT sOmE pIzZa"
         },
         {
-            "TEXT_SIZE": "normal",
+            "TEXT_CLASS": "normal",
             "CONTENT": "EaT sOmE pIzZa"
         },
         {
-            "TEXT_SIZE": "large",
+            "TEXT_CLASS": "bold large",
             "CONTENT": "EaT sOmE pIzZa"
         }
     ],
@@ -31,8 +31,22 @@
         "ID": "00001",
         "ITEMS": [
             {
-                "ITEM_NAME": "qweqwe",
+                "ITEM_NAME": "Item1",
                 "ITEM_PRICE": "0.99",
+                "ITEM_MODIFIERS": [
+                    {
+                        "MODIFIER_NAME": "Mod1",
+                        "MODIFIER_PRICE": null
+                    },
+                    {
+                        "MODIFIER_NAME": "Mod2",
+                        "MODIFIER_PRICE": "9.99"
+                    }
+                ]
+            },
+            {
+                "ITEM_NAME": "Item2",
+                "ITEM_PRICE": "150.00",
                 "ITEM_MODIFIERS": [
                     {
                         "MODIFIER_NAME": "No peanuts",
@@ -43,37 +57,21 @@
                         "MODIFIER_PRICE": "9.99"
                     }
                 ]
-            },
-            {
-                "ITEM_NAME": "qweqwe",
-                "ITEM_PRICE": "0.99",
-                "ITEM_MODIFIERS": [
-                    {
-                        "MODIFIER_NAME": "No peanuts",
-                        "MODIFIER_PRICE": null
-                    },
-                    {
-                        "MODIFIER_NAME": "Extra peanuts",
-                        "MODIFIER_PRICE": "9.99"
-                    }
-                ]
-            }
-        ],
-
-        "LINE_BLOCK_BOTTOM": [
-            {
-                "TEXT_SIZE": "small",
-                "CONTENT": "EaT sOmE pIzZa"
-            },
-            {
-                "TEXT_SIZE": "normal",
-                "CONTENT": "EaT sOmE pIzZa"
-            },
-            {
-                "TEXT_SIZE": "large",
-                "CONTENT": "EaT sOmE pIzZa"
             }
         ]
-        
-    }
+    },
+    "LINE_BLOCK_BOTTOM": [
+        {
+            "TEXT_CLASS": "bold small left",
+            "CONTENT": "EaT sOmE pIzZa"
+        },
+        {
+            "TEXT_CLASS": "underline italic bold large",
+            "CONTENT": "EaT sOmE pIzZa"
+        },
+        {
+            "TEXT_CLASS": "small",
+            "CONTENT": "EaT sOmE pIzZa"
+        }
+    ]
 }

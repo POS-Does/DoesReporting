@@ -1,135 +1,156 @@
-<h1>HELLO</h1>
+<html>
 
-<style>
-    .receipt {
-        margin: 1% 1%;
-    }
+<head>
+    <style>
+        .receipt {
+            font-size: 12px;
+            line-height: 70%;
+        }
 
-    .company {
-        text-align: center;
-    }
+        .no-lh {
+            line-height: 100%;
+        }
 
-    .company span {
-        display: block;
-    }
+        .company {
+            text-align: center;
+        }
 
-    .line-block {
-        text-align: center;
-    }
+        .company span {
+            display: block;
+        }
 
-    .small {
-        font-size: 0.75em;
-    }
+        .line-block {
+            text-align: center;
+        }
 
-    .normal {
-        font-size: 1.0em;
-    }
+        .small {
+            font-size: 0.9em;
+        }
 
-    .large {
-        font-size: 1.25em;
-    }
+        .normal {
+            font-size: 1.25em;
+            line-height: 100%;
+        }
 
-    .left {
-        text-align: left;
-    }
+        .large {
+            font-size: 1.5em;
+            line-height: 100%;
+        }
 
-    .center {
-        text-align: center;
-    }
+        .left {
+            text-align: left;
+        }
 
-    .right {
-        text-align: right;
-    }
+        .center {
+            text-align: center;
+        }
 
-    .modifier {
-        margin-left: 5%;
-    }
+        .right {
+            text-align: right;
+        }
 
-    table {
-        width: 100%;
-    }
-</style>
+        .italic {
+            font-style: italic;
+        }
 
-<div class="receipt">
-    <div class="company">
-        <span>{{:company.COMPANY_NAME}}</span>
-        <span>{{:company.ADDRESS_FIRST}}</span>
-        {{if company.ADDRESS_SECOND !== null}}
-            <span>{{:company.ADDRESS_SECOND}}</span>
+        .bold {
+            font-style: bold;
+        }
+
+        .underline {
+            font-style: underline;
+        }
+
+        table {
+            width: 100%;
+        }
+
+        td.modifier { padding-left:1em; }
+    </style>
+</head>
+
+<body>
+    <div class="receipt">
+        <p class="company no-lh">
+            <span class="large">{{:company.COMPANY_NAME}}</span>
+            <span>{{:company.ADDRESS_FIRST}}</span> {{if company.ADDRESS_SECOND !== null}}
+            <span>{{:company.ADDRESS_SECOND}}</span> {{/if}}
+            <span>{{:company.ADDRESS_CITY}}, {{:company.ADDRESS_STATE}} {{:company.ADDRESS_ZIP}}</span>
+            <span>{{:company.COMPANY_TELEPHONE}}</span>
+        </p>
+
+        {{if LINE_BLOCK_TOP}}
+            <p class="line-block no-lh">
+                <table>
+                    {{for LINE_BLOCK_TOP}}
+                        <tr><span class="{{:TEXT_CLASS}}">{{:CONTENT}}</span></tr>
+                    {{/for}}
+                </table>
+            </p>
         {{/if}}
-        <span>{{:company.ADDRESS_CITY}}, {{:company.ADDRESS_STATE}} {{:company.ADDRESS_ZIP}}</span>
-        <span>{{:company.COMPANY_TELEPHONE}}</span>
-    </div>
 
-    {{if LINE_BLOCK_TOP}}
-    <div class="line-block">
-        {{for LINE_BLOCK_TOP}}
-            <span class="{{:TEXT_SIZE}} {{:textAlignment}}">{{:CONTENT}}</span>
-        {{/for}}
-    </div>
-    {{/if}}
-
-    <div class="ticket-info">
-        <table>
-            <tr>
-                <td class="left">Server: {{:ticket.USER_NAME}}</td>
-                <td class="right">{{:ticket.DATE}}</td>
-            </tr>
-            <tr>
-                <td class="left">
-                    {{if ticket.TABLE_NUMBER}}
-                        Table: {{:ticket.TABLE_NUMBER}}
-                    {{else ticket.CUSTOMER_NAME}}
-                        Guest: {{:ticket.CUSTOMER_NAME}}
-                    {{/if}}
-                </td>
-                <td class="right">{{:ticket.TIME}}</td>
-            </tr>
-            <tr>
-                <td class="left">Guests: {{:ticket.NUMBER_OF_GUESTS}}</td>
-                <td class="right">{{:ticket.ID}}</td>
-            </tr>
-        </table>
-    </div>
-
-    <div class="items">
-        <table>
-            {{for ticket.ITEMS}}
+        <p class="ticket-info">
+            <table>
                 <tr>
-                    <td class="left">{{:ITEM_NAME}}</td>
-                    <td class="right">${{:ITEM_PRICE}}</td>
+                    <td class="left">Server: {{:ticket.USER_NAME}}</td>
+                    <td class="right">{{:ticket.DATE}}</td>
                 </tr>
-                {{for ITEM_MODIFIERS}}
-                    <tr>
-                        <td class="left modifier">{{:MODIFIER_NAME}}</td>
-                        {{if MODIFIER_PRICE}}
-                            <td class="right">${{:MODIFIER_PRICE}}</td>
+                <tr>
+                    <td class="left">
+                        {{if ticket.TABLE_NUMBER}} Table: {{:ticket.TABLE_NUMBER}} {{else ticket.CUSTOMER_NAME}} Customer: {{:ticket.CUSTOMER_NAME}}
                         {{/if}}
+                    </td>
+                    <td class="right">{{:ticket.TIME}}</td>
+                </tr>
+                <tr>
+                    <td class="left">Guests: {{:ticket.NUMBER_OF_GUESTS}}</td>
+                    <td class="right">{{:ticket.ID}}</td>
+                </tr>
+            </table>
+        </p>
+
+        <p class="items">
+            <table>
+                {{for ticket.ITEMS}}
+                    <tr>
+                        <td class="left">{{:ITEM_NAME}}</td>
+                        <td class="right">{{:ITEM_PRICE}}</td>
                     </tr>
+                    {{for ITEM_MODIFIERS}}
+                        <tr>
+                            <td class="modifier">{{:MODIFIER_NAME}}</td>
+                            {{if MODIFIER_PRICE}}
+                            <td class="right">{{:MODIFIER_PRICE}}</td>
+                            {{/if}}
+                        </tr>
+                    {{/for}}
                 {{/for}}
-            {{/for}}
-        </table>
+            </table>
+        </p>
+
+        <p class="totals">
+            <table>
+                <tr>
+                    <td class="left"></td>
+                    <td class="right"></td>
+                </tr>
+                <tr></tr>
+                <tr>
+
+                </tr>
+            </table>
+        </p>
+
+        {{if LINE_BLOCK_BOTTOM}}
+            <p class="line-block no-lh">
+                <table>
+                    {{for LINE_BLOCK_BOTTOM}}
+                        <tr><span class="{{:TEXT_CLASS}}">{{:CONTENT}}</span></tr>
+                    {{/for}}
+                </table>
+            </p>
+        {{/if}}
     </div>
+</body>
 
-    <div class="totals">
-        <table>
-            <tr>
-                <td class="left"></td>
-                <td class="right"></td>
-            </tr>
-            <tr></tr>
-            <tr>
-
-            </tr>
-        </table>
-    </div>
-
-    {{if LINE_BLOCK_BOTTOM}}
-    <div class="line-block">
-        {{for LINE_BLOCK_BOTTOM}}
-            <span class="{{:textSize}} {{:textAlignment}}">{{:content}}</span>
-        {{/for}}
-    </div>
-    {{/if}}
-</div>
-
+</html>
