@@ -5,6 +5,7 @@
         .receipt {
             font-size: 12px;
             line-height: 70%;
+            font-family: sans-serif;
         }
 
         .no-lh {
@@ -19,6 +20,14 @@
             display: block;
         }
 
+        .delivery {
+            text-align: center;
+        }
+
+        .delivery span {
+            display: block;
+        }
+
         .line-block {
             text-align: center;
         }
@@ -28,12 +37,12 @@
         }
 
         .normal {
-            font-size: 1.25em;
+            font-size: 1em;
             line-height: 100%;
         }
 
         .large {
-            font-size: 1.5em;
+            font-size: 1.25em;
             line-height: 100%;
         }
 
@@ -128,18 +137,28 @@
             </table>
         </p>
 
-        <p class="totals">
+        <div class="totals">
             <table>
                 <tr>
-                    <td class="left"></td>
-                    <td class="right"></td>
+                    <td class="left">Subtotal</td>
+                    <td class="right">{{:ticket.totals.TICKET_SUBTOTAL}}</td>
                 </tr>
-                <tr></tr>
                 <tr>
-
+                    <td class="left">Tax</td>
+                    <td class="right">{{:ticket.totals.TICKET_TAX}}</td>
                 </tr>
+                <tr class="balance-due">
+                    <td class="left">Total</td>
+                    <td class="right">{{:ticket.totals.TICKET_TOTAL}}</td>
+                </tr>
+                {{if ticket.totals.TICKET_TAX_EXEMPT_SUBTOTAL}}
+                    <tr>
+                        <td class="left">Tax-Exempt Total</td>
+                        <td class="right">{{:ticket.totals.TICKET_TAX_EXEMPT_SUBTOTAL}}</td>
+                    </tr>
+                {{/if}}
             </table>
-        </p>
+        </div>
 
         {{if LINE_BLOCK_BOTTOM}}
             <p class="line-block no-lh">
@@ -149,6 +168,16 @@
                     {{/for}}
                 </table>
             </p>
+        {{/if}}
+
+        {{if ticket.delivery}}
+            <div class="delivery no-lh">
+                <span class="large">{{:ticket.delivery.DELIVERY_NAME}}</span>
+                <span>{{:ticket.delivery.DELIVERY_FIRST}}</span> {{if ticket.delivery.DELIVERY_SECOND !== null}}
+                <span>{{:ticket.delivery.DELIVERY_SECOND}}</span> {{/if}}
+                <span>{{:ticket.delivery.DELIVERY_CITY}}, {{:ticket.delivery.DELIVERY_STATE}} {{:ticket.delivery.DELIVERY_COUNTRY}}</span>
+                <span>{{:ticket.delivery.DELIVERY_PHONE}}</span>
+            </div>
         {{/if}}
     </div>
 </body>

@@ -58,7 +58,23 @@
                     }
                 ]
             }
-        ]
+        ],
+        "totals": {
+            "TICKET_SUBTOTAL": "1000.00",
+            "TICKET_TAX": "9.99",
+            "TICKET_TOTAL": "1009.99",
+            "TICKET_TAX_EXEMPT_SUBTOTAL": "0.00"
+        },
+        "delivery": {
+            "DELIVERY_NAME": "Bibbity Bob",
+            "DELIVERY_FIRST": "987 NE 90th Ct",
+            "DELIVERY_SECOND": "Apt. 007",
+            "DELIVERY_CITY": "Florence",
+            "DELIVERY_STATE": "IT",
+            "DELIVERY_COUNTRY": "Italy",
+            "DELIVERY_PHONE": "(800) 867-5309",
+            "DELIVERY_ID": "9"
+        }
     },
     "LINE_BLOCK_BOTTOM": [
         {
