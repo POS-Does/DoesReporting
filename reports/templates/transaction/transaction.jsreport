@@ -1,0 +1,171 @@
+<html>
+
+<head>
+    <style>
+        .receipt {
+            font-size: 12px;
+            line-height: 70%;
+            font-family: sans-serif;
+        }
+
+        .no-lh {
+            line-height: 100%;
+        }
+
+        .company {
+            text-align: center;
+        }
+
+        .company span {
+            display: block;
+        }
+
+        .delivery {
+            text-align: center;
+        }
+
+        .delivery span {
+            display: block;
+        }
+
+        .line-block {
+            text-align: center;
+        }
+
+        .small {
+            font-size: 0.9em;
+        }
+
+        .normal {
+            font-size: 1em;
+            line-height: 100%;
+        }
+
+        .large {
+            font-size: 1.25em;
+            line-height: 100%;
+        }
+
+        .left {
+            text-align: left;
+        }
+
+        .center {
+            text-align: center;
+        }
+
+        .right {
+            text-align: right;
+        }
+
+        .italic {
+            font-style: italic;
+        }
+
+        .bold {
+            font-style: bold;
+        }
+
+        .underline {
+            font-style: underline;
+        }
+
+        table {
+            width: 100%;
+        }
+
+        td.modifier { padding-left:1em; }
+    </style>
+</head>
+
+<body>
+    <div class="receipt">
+        <p class="company no-lh">
+            <span class="large">{{:company.COMPANY_NAME}}</span>
+            <span>{{:company.ADDRESS_FIRST}}</span> {{if company.ADDRESS_SECOND !== null}}
+            <span>{{:company.ADDRESS_SECOND}}</span> {{/if}}
+            <span>{{:company.ADDRESS_CITY}}, {{:company.ADDRESS_STATE}} {{:company.ADDRESS_ZIP}}</span>
+            <span>{{:company.COMPANY_TELEPHONE}}</span>
+        </p>
+
+        <p class="transaction-info">
+            <table>
+                <tr>
+                    <td class="left">{{:transaction.DATE}}</td>
+                    <td class="right">{{:transaction.TIME}}</td>
+                </tr>
+            </table>
+        </p>
+
+        <p class="sale center large">
+            SALE
+        </p>
+
+        <p class="transaction-details">
+            <table>
+                    <tr>
+                        <td class="left">ACCT:</td>
+                        <td>************{{:transaction.TRANSACTION_CARD_NUMBER}}</td>
+                    </tr>
+                    <tr>
+                        <td class="left">APP NAME:</td>
+                        <td>{{:transaction.TRANSACTION_CARD_TYPE}}</td>
+                    </tr>
+                    <tr>
+                        <td class="left">ENTRY:</td>
+                        <td>{{:transaction.TRANSACTION_CHARGE_TYPE}}</td>
+                    </tr>
+                    <tr>
+                        <td class="left">HREF:</td>
+                        <td>{{:transaction.HREF}}</td>
+                    </tr>
+                    <tr>
+                        <td class="left">AID:</td>
+                        <td>{{:transaction.AID}}</td>
+                    </tr>
+                    <tr>
+                        <td class="left">APPROVAL:</td>
+                        <td>{{:transaction.TRANSACTION_AUTHORIZATION}}</td>
+                    </tr>
+                    
+            </table>
+        </p>
+
+        <div class="totals">
+            <table>
+                <tr>
+                    <td class="left large">{{if transaction.tip}}SUB{{/if}}TOTAL:</td>
+                    <td class="right large">{{:transaction.TRANSACTION_TICKET_TOTAL}}</td>
+                </tr>
+                {{if transaction.tip}}
+                <tr>
+                    <td class="left large">TIP:</td>
+                    <td class="right">_______________________</td>
+                </tr>
+                <tr>
+                    <td class="left large">TOTAL:</td>
+                    <td class="right">_______________________</td>
+                </tr>
+                {{/if}}
+            </table>
+        </div>
+
+        {{if transaction.signature}}
+        <br></br>
+        <br></br>
+
+        <p class="center">
+            X_________________________________
+        </p>
+        <p class="center">
+            SIGNATURE
+        </p>
+        {{/if}}
+
+        <p class="center large">
+            APPROVED
+        </p>
+    </div>
+</body>
+
+</html>
