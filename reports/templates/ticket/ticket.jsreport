@@ -3,7 +3,7 @@
 <head>
     <style>
         .receipt {
-            font-size: 12px;
+            font-size: 18px;
             line-height: 70%;
             font-family: sans-serif;
         }
@@ -33,16 +33,16 @@
         }
 
         .small {
-            font-size: 0.9em;
+            font-size: 12px;
         }
 
         .normal {
-            font-size: 1em;
+            font-size: 18px;
             line-height: 100%;
         }
 
         .large {
-            font-size: 1.25em;
+            font-size: 25px;
             line-height: 100%;
         }
 
@@ -81,7 +81,7 @@
 <body>
     <div class="receipt">
         <p class="company no-lh">
-            <span class="large">{{:company.COMPANY_NAME}}</span>
+            <span class="large bold">{{:company.COMPANY_NAME}}</span>
             <span>{{:company.ADDRESS_FIRST}}</span> {{if company.ADDRESS_SECOND !== null}}
             <span>{{:company.ADDRESS_SECOND}}</span> {{/if}}
             <span>{{:company.ADDRESS_CITY}}, {{:company.ADDRESS_STATE}} {{:company.ADDRESS_ZIP}}</span>
