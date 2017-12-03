@@ -1,0 +1,101 @@
+<html>
+
+<head>
+    <style>
+        .receipt {
+            font-size: 18px;
+            line-height: 70%;
+            font-family: sans-serif;
+            margin-top: 200px;
+        }
+
+        .no-lh {
+            line-height: 100%;
+        }
+
+        .delivery span {
+            display: block;
+        }
+
+        .line-block {
+            text-align: center;
+        }
+
+        .left {
+            text-align: left;
+        }
+
+        .center {
+            text-align: center;
+        }
+
+        .right {
+            text-align: right;
+        }
+
+        .italic {
+            font-style: italic;
+        }
+
+        .bold {
+            font-style: bold;
+        }
+
+        .underline {
+            font-style: underline;
+        }
+
+        table {
+            width: 100%;
+        }
+
+        td.modifier { padding-left:2em; }
+    </style>
+</head>
+
+<body>
+    <div class="receipt">
+        <div class="center" style="font-size: 50px;">{{:ticket.TICKET_DESCRIPTION}}</div>
+        <p class="ticket-info">
+            <table>
+                <tr>
+                    <td class="left">Server: {{:ticket.USER_NAME}}</td>
+                    <td class="right">{{:ticket.DATE}}</td>
+                </tr>
+                <tr>
+                    <td class="left">
+                        {{if ticket.TABLE_NUMBER}} Table: {{:ticket.TABLE_NUMBER}} {{else ticket.CUSTOMER_NAME}} Customer: {{:ticket.CUSTOMER_NAME}}
+                        {{/if}}
+                    </td>
+                    <td class="right">{{:ticket.TIME}}</td>
+                </tr>
+                <tr>
+                    <td class="left">Guests: {{:ticket.NUMBER_OF_GUESTS}}</td>
+                    <td class="right">{{:ticket.ID}}</td>
+                </tr>
+            </table>
+        </p>
+
+        {{if ticket.sequences}}
+            {{for ticket.sequences}}
+                <div style="font-size: 30px;">{{:sequence}}</div>
+                <p class="items">
+                    <table>
+                        {{for ITEMS}}
+                            <tr>
+                                <td class="left" style="font-size: 25px;">{{:ITEM_NAME}}</td>
+                            </tr>
+                            {{for ITEM_MODIFIERS}}
+                                <tr>
+                                    <td class="modifier" style="font-size: 25px;">{{:MODIFIER_NAME}}</td>
+                                </tr>
+                            {{/for}}
+                        {{/for}}
+                    </table>
+                </p>
+            {{/for}}
+        {{/if}}
+    </div>
+</body>
+
+</html>
