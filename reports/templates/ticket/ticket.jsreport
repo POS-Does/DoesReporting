@@ -112,7 +112,13 @@
                     <td class="right">{{:ticket.TIME}}</td>
                 </tr>
                 <tr>
-                    <td class="left">Guests: {{:ticket.NUMBER_OF_GUESTS}}</td>
+                    <td class="left">Guests: {{:ticket.NUMBER_OF_GUESTS}} 
+
+                    {{if ticket.togo}}
+                        TO GO
+                    {{/if}}
+                    
+                    </td>
                     <td class="right">{{:ticket.ID}}</td>
                 </tr>
             </table>
@@ -145,10 +151,22 @@
                     <td class="left">Subtotal</td>
                     <td class="right">{{:ticket.totals.TICKET_SUBTOTAL}}</td>
                 </tr>
+                {{if ticket.totals.TICKET_SERVICE_CHARGE}}
+                    <tr>
+                        <td class="left">Service Charge</td>
+                        <td class="right">{{:ticket.totals.TICKET_SERVICE_CHARGE}}</td>
+                    </tr>
+                {{/if}}
                 <tr>
                     <td class="left">Tax</td>
                     <td class="right">{{:ticket.totals.TICKET_TAX}}</td>
                 </tr>
+                {{if ticket.totals.TICKET_APPLIED_DISCOUNT}}
+                    <tr>
+                        <td class="left">Discount</td>
+                        <td class="right">-{{:ticket.totals.TICKET_APPLIED_DISCOUNT}}</td>
+                    </tr>
+                {{/if}}
                 <tr class="balance-due">
                     <td class="left">Total</td>
                     <td class="right">{{:ticket.totals.TICKET_TOTAL}}</td>
@@ -181,6 +199,26 @@
                 <span>{{:ticket.delivery.DELIVERY_PHONE}}</span>
             </div>
         {{/if}}
+
+        <p class="center items">
+            <table>
+                    <tr>
+                        <td class="center">Sugested Tip:</td>
+                    </tr>
+                    <tr>
+                        <td class="left">18% -</td>
+                        <td class="right">${{:ticket.suggested_tip18}}</td>
+                    </tr>
+                    <tr>
+                        <td class="left">20%-</td>
+                        <td class="right">${{:ticket.suggested_tip20}}</td>
+                    </tr>
+                    <tr>
+                        <td class="left">22%-</td>
+                        <td class="right">${{:ticket.suggested_tip22}}</td>
+                    </tr>
+            </table>
+        </p>
     </div>
 </body>
 

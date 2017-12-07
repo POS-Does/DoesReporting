@@ -3,7 +3,7 @@
 <head>
     <style>
         .receipt {
-            font-size: 12px;
+            font-size: 15px;
             line-height: 70%;
             font-family: sans-serif;
         }
@@ -42,7 +42,7 @@
         }
 
         .large {
-            font-size: 1.25em;
+            
             line-height: 100%;
         }
 
@@ -88,6 +88,32 @@
             <span>{{:company.COMPANY_TELEPHONE}}</span>
         </p>
 
+        <p class="ticket-info">
+            <table>
+                <tr>
+                    <td class="left">Server: {{:transaction.ticket.USER_NAME}}</td>
+                    <td class="right">{{:transaction.ticket.DATE}}</td>
+                </tr>
+                <tr>
+                    <td class="left">
+                        {{if transaction.ticket.TABLE_NUMBER}} Table: {{:transaction.ticket.TABLE_NUMBER}} {{else transaction.ticket.CUSTOMER_NAME}} Customer: {{:transaction.ticket.CUSTOMER_NAME}}
+                        {{/if}}
+                    </td>
+                    <td class="right">{{:transaction.ticket.TIME}}</td>
+                </tr>
+                <tr>
+                    <td class="left">Guests: {{:ticket.NUMBER_OF_GUESTS}} 
+
+                    {{if ticket.togo}}
+                        TO GO
+                    {{/if}}
+                    
+                    </td>
+                    <td class="right">{{:ticket.ID}}</td>
+                </tr>
+            </table>
+        </p>
+
         <p class="transaction-info">
             <table>
                 <tr>
@@ -97,9 +123,7 @@
             </table>
         </p>
 
-        <p class="sale center large">
-            SALE
-        </p>
+        <div class="center large" style="font-size: 1.25em;">SALE</div>
 
         <p class="transaction-details">
             <table>
@@ -135,7 +159,7 @@
             <table>
                 <tr>
                     <td class="left large">{{if transaction.tip}}SUB{{/if}}TOTAL:</td>
-                    <td class="right large">{{:transaction.TRANSACTION_TICKET_TOTAL}}</td>
+                    <td class="right" style="font-size: 18px;">{{:transaction.TRANSACTION_TICKET_TOTAL}}</td>
                 </tr>
                 {{if transaction.tip}}
                 <tr>
@@ -165,6 +189,31 @@
         <p class="center large">
             APPROVED
         </p>
+
+        {{if transaction.suggested_tip18}}
+        <p class="center transaction-details">
+            <table>
+                    <tr>
+                        <td class="center">Sugested Tip:</td>
+                    </tr>
+                    <tr>
+                        <td class="left">18% -</td>
+                        <td class="right">${{:transaction.suggested_tip18}}</td>
+                    </tr>
+                    <tr>
+                        <td class="left">20%-</td>
+                        <td class="right">${{:transaction.suggested_tip20}}</td>
+                    </tr>
+                    <tr>
+                        <td class="left">22%-</td>
+                        <td class="right">${{:transaction.suggested_tip22}}</td>
+                    </tr>
+                    <tr>
+                        <td class="center">{{if transaction.merchant}} {{:transaction.merchant}} {{/if}}</td>
+                    </tr>
+            </table>
+        </p>
+        {{/if}}
     </div>
 </body>
 

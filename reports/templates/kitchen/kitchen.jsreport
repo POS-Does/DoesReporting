@@ -49,14 +49,22 @@
             width: 100%;
         }
 
-        td.modifier { padding-left:2em; }
+        td.modifier { 
+            padding-left:2em;
+            line-height: 100%;
+            font-size: 25px;}
     </style>
 </head>
 
 <body>
     <div class="receipt">
         <div class="center" style="font-size: 50px;">{{:ticket.TICKET_DESCRIPTION}}</div>
-        <p class="ticket-info">
+
+        {{if ticket.togo}}
+            <div class="center" style="font-size: 30px;">TOGO</div>
+        {{/if}}
+
+        <p class="ticket-info">}
             <table>
                 <tr>
                     <td class="left">Server: {{:ticket.USER_NAME}}</td>
@@ -70,7 +78,13 @@
                     <td class="right">{{:ticket.TIME}}</td>
                 </tr>
                 <tr>
-                    <td class="left">Guests: {{:ticket.NUMBER_OF_GUESTS}}</td>
+                    <td class="left">Guests: {{:ticket.NUMBER_OF_GUESTS}} 
+
+                    {{if ticket.togo}}
+                        TO GO
+                    {{/if}}
+                    
+                    </td>
                     <td class="right">{{:ticket.ID}}</td>
                 </tr>
             </table>
@@ -78,16 +92,15 @@
 
         {{if ticket.sequences}}
             {{for ticket.sequences}}
-                <div style="font-size: 30px;">{{:sequence}}</div>
                 <p class="items">
                     <table>
                         {{for ITEMS}}
                             <tr>
-                                <td class="left" style="font-size: 25px;">{{:ITEM_NAME}}</td>
+                                <td class="left" style="font-size: 25px; line-height:80%">{{:ITEM_NAME}}</td>
                             </tr>
                             {{for ITEM_MODIFIERS}}
                                 <tr>
-                                    <td class="modifier" style="font-size: 25px;">{{:MODIFIER_NAME}}</td>
+                                    <td class="modifier">{{:MODIFIER_NAME}}</td>
                                 </tr>
                             {{/for}}
                         {{/for}}
