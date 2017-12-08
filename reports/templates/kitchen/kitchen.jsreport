@@ -59,12 +59,8 @@
 <body>
     <div class="receipt">
         <div class="center" style="font-size: 50px;">{{:ticket.TICKET_DESCRIPTION}}</div>
-
-        {{if ticket.togo}}
-            <div class="center" style="font-size: 30px;">TOGO</div>
-        {{/if}}
-
-        <p class="ticket-info">}
+        {{if ticket.togo}}<div class="center" style="font-size: 25px;">TO GO</div>{{/if}}
+        <p class="ticket-info">
             <table>
                 <tr>
                     <td class="left">Server: {{:ticket.USER_NAME}}</td>
@@ -79,12 +75,9 @@
                 </tr>
                 <tr>
                     <td class="left">Guests: {{:ticket.NUMBER_OF_GUESTS}} 
-
                     {{if ticket.togo}}
                         TO GO
-                    {{/if}}
-                    
-                    </td>
+                    {{/if}}</td>
                     <td class="right">{{:ticket.ID}}</td>
                 </tr>
             </table>
