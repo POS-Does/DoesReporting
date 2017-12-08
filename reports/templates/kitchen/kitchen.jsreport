@@ -6,7 +6,7 @@
             font-size: 18px;
             line-height: 70%;
             font-family: sans-serif;
-            margin-top: 200px;
+            margin-top: 125px;
         }
 
         .no-lh {
