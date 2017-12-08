@@ -33,16 +33,16 @@
         }
 
         .small {
-            font-size: 0.9em;
+            font-size: 12px;
         }
 
         .normal {
-            font-size: 1em;
+            font-size: 15px;
             line-height: 100%;
         }
 
         .large {
-            
+            font-size: 18px;
             line-height: 100%;
         }
 
@@ -80,15 +80,15 @@
 
 <body>
     <div class="receipt">
-        <p class="company no-lh">
+        <div class="company no-lh">
             <span class="large">{{:company.COMPANY_NAME}}</span>
             <span>{{:company.ADDRESS_FIRST}}</span> {{if company.ADDRESS_SECOND !== null}}
             <span>{{:company.ADDRESS_SECOND}}</span> {{/if}}
             <span>{{:company.ADDRESS_CITY}}, {{:company.ADDRESS_STATE}} {{:company.ADDRESS_ZIP}}</span>
             <span>{{:company.COMPANY_TELEPHONE}}</span>
-        </p>
+        </div>
 
-        <p class="ticket-info">
+        <div class="ticket-info">
             <table>
                 <tr>
                     <td class="left">Server: {{:transaction.ticket.USER_NAME}}</td>
@@ -102,30 +102,30 @@
                     <td class="right">{{:transaction.ticket.TIME}}</td>
                 </tr>
                 <tr>
-                    <td class="left">Guests: {{:ticket.NUMBER_OF_GUESTS}} 
+                    <td class="left">Guests: {{:transaction.ticket.NUMBER_OF_GUESTS}} 
 
-                    {{if ticket.togo}}
+                    {{if transaction.ticket.togo}}
                         TO GO
                     {{/if}}
                     
                     </td>
-                    <td class="right">{{:ticket.ID}}</td>
+                    <td class="right">{{:transaction.ticket.ID}}</td>
                 </tr>
             </table>
-        </p>
+        </div>
 
-        <p class="transaction-info">
+        <div class="transaction-info">
             <table>
                 <tr>
                     <td class="left">{{:transaction.DATE}}</td>
                     <td class="right">{{:transaction.TIME}}</td>
                 </tr>
             </table>
-        </p>
+        </div>
 
-        <div class="center large" style="font-size: 1.25em;">SALE</div>
+        <div class="center large" style="font-size: 18px;">SALE</div>
 
-        <p class="transaction-details">
+        <div class="transaction-details">
             <table>
                     <tr>
                         <td class="left">ACCT:</td>
@@ -153,14 +153,25 @@
                     </tr>
                     
             </table>
-        </p>
+        </div>
 
         <div class="totals">
             <table>
                 <tr>
                     <td class="left large">{{if transaction.tip}}SUB{{/if}}TOTAL:</td>
                     <td class="right" style="font-size: 18px;">{{:transaction.TRANSACTION_TICKET_TOTAL}}</td>
+                    
                 </tr>
+                {{if transaction.TRANSACTION_PARTIAL}} 
+                <tr>
+                    <td class="left large">PARTIAL AMOUNT CHARGED:</td>
+                    <td class="right" style="font-size: 18px;">{{:transaction.TRANSACTION_PARTIAL}}</td>
+                </tr>
+                <tr>
+                    <td class="left large">BALANCE:</td>
+                    <td class="right" style="font-size: 18px;">{{:transaction.BALANCE}}</td>
+                </tr>
+                {{/if}}
                 {{if transaction.tip}}
                 <tr>
                     <td class="left large">TIP:</td>
