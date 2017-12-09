@@ -1,0 +1,205 @@
+<html>
+
+<head>
+    <style>
+        .receipt {
+            font-size: 15px;
+            line-height: 70%;
+            font-family: sans-serif;
+        }
+
+        .no-lh {
+            line-height: 100%;
+        }
+
+        .company {
+            text-align: center;
+        }
+
+        .company span {
+            display: block;
+        }
+
+        .line-block {
+            text-align: center;
+        }
+
+        .small {
+            font-size: 12px;
+        }
+
+        .normal {
+            font-size: 15px;
+            line-height: 100%;
+        }
+
+        .large {
+            font-size: 18px;
+            line-height: 100%;
+        }
+
+        .number {
+            font-size: 18px;
+        }
+
+        .left {
+            text-align: left;
+        }
+
+        .center {
+            text-align: center;
+        }
+
+        .right {
+            text-align: right;
+        }
+
+        .italic {
+            font-style: italic;
+        }
+
+        .bold {
+            font-style: bold;
+        }
+
+        .underline {
+            font-style: underline;
+        }
+
+        table {
+            width: 100%;
+        }
+    </style>
+</head>
+
+<body>
+    <div class="receipt">
+        <div class="company no-lh">
+            <span class="large">{{:company.COMPANY_NAME}}</span>
+            <span>{{>company.ADDRESS_FIRST}}</span> {{if company.ADDRESS_SECOND !== null}}
+            <span>{{>company.ADDRESS_SECOND}}</span> {{/if}}
+            <span>{{>company.ADDRESS_CITY}}, {{>company.ADDRESS_STATE}} {{>company.ADDRESS_ZIP}}</span>
+            <span>{{>company.COMPANY_TELEPHONE}}</span>
+        </div>
+
+        <div class="no-lh" style="font-size: 30px;">Employee: {{>user.FIRST_NAME}} {{>user.LAST_NAME}}</div>
+
+        <div class="grand-totals">
+            <div class="no-lh" style="font-size: 30px;">Grand Totals</div>
+            <table>
+                <tr>
+                    <td class="left">Grand Subtotal:</td>
+                    <td class="right number">{{>GRAND_SUBTOTAL}}</td>
+                </tr>
+                <tr>
+                    <td class="left">Grand Total:</td>
+                    <td class="right number">{{>GRAND_TOTAL}}</td>
+                </tr>
+                <tr>
+                    <td class="left">Grand Tip Total:</td>
+                    <td class="right number">{{>GRAND_TIP_TOTAL}}</td>
+                </tr>
+                <tr>
+                    <td class="left">Grand Total With Tip:</td>
+                    <td class="right number">{{>GRAND_TOTAL_WITH_TIP}}</td>
+                </tr>
+            </table>
+        </div>
+
+        <div class="totals">
+            <div class="no-lh" style="font-size: 30px;">Totals</div>
+            {{for TOTALS}}
+                {{props}}
+                    <span class="large">{{>key}}</span>
+                    <table>
+                        <tr>
+                            <td class="left">Total before tax:</td>
+                            <td class="right number">{{>prop.TOTAL_BEFORE_TAX}}</td>
+                        </tr>
+                        <tr>
+                            <td class="left">Total:</td>
+                            <td class="right number">{{>prop.TOTAL}}</td>
+                        </tr>
+                        <tr>
+                            <td class="left">Total Tip:</td>
+                            <td class="right number">{{>prop.TOTAL_TIP}}</td>
+                        </tr>
+                        <tr>
+                            <td class="left">Untaxed Total:</td>
+                            <td class="right number">{{>prop.TOTAL_NO_TAX}}</td>
+                        </tr>
+                        <tr>
+                            <td class="left">Grand Total:</td>
+                            <td class="right number">{{>prop.GRAND_TOTAL}}</td>
+                        </tr>
+                        <tr>
+                            <td class="left">Void Total:</td>
+                            <td class="right number">{{>prop.VOID}}</td>
+                        </tr>
+                    </table>
+                {{/props}}
+            {{/for}}
+        </div>
+
+        <div class="payouts">
+            <div class="no-lh" style="font-size: 30px;">Payouts</div>
+            {{if payouts.size > 0}}
+                {{for payouts}}
+                    <div>{{>PAYOUT_REASON}} - <span class="number">{{>TICKET_ITEM_PRICE}}</span> - <span class="number">{{>PAYOUT_AMT}}</span><span class="bold">{{if TRANSACTION_VOID === 0}} - VOID{{/if}}</span> - {{>firstName}} {{>lastName}}</div>
+                {{/for}}
+            {{else}}
+                <div class="no-lh" style="margin:2px;">NO PAYOUTS</div>
+            {{/if}}
+        </div>
+
+        <div class="comped">
+            <div class="no-lh" style="font-size: 30px;">Comp'ed Items</div>
+            {{if compedItems.size > 0}}
+                {{for compedItems}}
+                    <div>{{>TICKET_ITEM_DESC}} - {{>firstName}} {{>lastName}}</div>
+                {{/for}}
+            {{else}}
+                <div class="no-lh" style="margin:2px;">NO COMP'ED ITEMS</div>
+            {{/if}}
+        </div>
+        <div class="void">
+            <div class="no-lh" style="font-size: 30px;">Void Items</div>
+            {{if voidItems.size > 0}}
+                {{for voidItems}}
+                    <div>{{>TICKET_ITEM_DESC}} - <span class="number">{{>TICKET_ITEM_TOTAL}}</span> - {{>firstName}} {{>lastName}}</div>
+                {{/for}}
+            {{else}}
+                <div class="no-lh" style="margin:2px;">NO VOID ITEMS</div>
+            {{/if}}
+        </div>
+
+        {{if !close}}
+            <div class="no-lh center" style="font-size: 40px;">NOT CLOSED</div>
+        {{else}}
+            {{if clock_response && clock_response.clock_history}}
+                <div class="clock">
+                    <table>
+                        <tr>
+                            <td class="left">Employee: </td>
+                            <td class="number">{{>clock_response.clock_history.userFirstName}} {{>clock_response.clock_history.userLastName}}</td>
+                        </tr>
+                        <tr>
+                            <td class="left">Clock In: </td>
+                            <td class="number">{{if clock_response.clock_history.CLOCK_IN}} {{>clock_response.clock_history.CLOCK_IN}} {{else}} N/A{{/if}}</td>
+                        </tr>
+                        <tr>
+                            <td class="left">Clock Out:</td>
+                            <td class="number">{{if clock_response.clock_history.CLOCK_OUT}} {{>clock_response.clock_history.CLOCK_OUT}} {{else}} N/A{{/if}}</td>
+                        </tr>
+                        <tr>
+                            <td class="left">Hours worked:</td>
+                            <td class="number">{{>clock_response.clock_history.hoursWorked}}</td>
+                        </tr>
+                    </table>
+                </div>
+            {{/if}}
+        {{/if}}
+    </div>
+</body>
+
+</html>
