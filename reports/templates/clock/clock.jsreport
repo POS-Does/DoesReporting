@@ -1,0 +1,104 @@
+<html>
+
+<head>
+    <style>
+        .receipt {
+            font-size: 15px;
+            font-family: sans-serif;
+        }
+
+        .no-lh {
+            line-height: 100%;
+        }
+
+        .company {
+            text-align: center;
+        }
+
+        .company span {
+            display: block;
+        }
+
+        .line-block {
+            text-align: center;
+        }
+
+        .small {
+            font-size: 12px;
+        }
+
+        .normal {
+            font-size: 15px;
+            line-height: 100%;
+        }
+
+        .large {
+            font-size: 18px;
+            line-height: 100%;
+        }
+
+        .number {
+            font-size: 18px;
+        }
+
+        .left {
+            text-align: left;
+        }
+
+        .center {
+            text-align: center;
+        }
+
+        .right {
+            text-align: right;
+        }
+
+        .italic {
+            font-style: italic;
+        }
+
+        .bold {
+            font-style: bold;
+        }
+
+        .underline {
+            font-style: underline;
+        }
+
+        table {
+            width: 100%;
+        }
+    </style>
+</head>
+
+<body>
+    <div class="receipt">
+        <div class="company no-lh">
+            <span class="large">{{>company.COMPANY_NAME}}</span>
+            <span>{{>company.ADDRESS_FIRST}}</span> {{if company.ADDRESS_SECOND !== null}}
+            <span>{{>company.ADDRESS_SECOND}}</span> {{/if}}
+            <span>{{>company.ADDRESS_CITY}}, {{>company.ADDRESS_STATE}} {{>company.ADDRESS_ZIP}}</span>
+            <span>{{>company.COMPANY_TELEPHONE}}</span>
+        </div>
+
+        <p class="no-lh" style="font-size: 30px;">Employee: {{>clock_history.userFirstName}} {{>clock_history.userLastName}}</p>
+        <div class="clock">
+            <table>
+                <tr>
+                    <td class="left">Clock In: </td>
+                    <td class="number">{{if clock_history.CLOCK_IN}} {{>clock_history.CLOCK_IN}} {{else}} N/A{{/if}}</td>
+                </tr>
+                <tr>
+                    <td class="left">Clock Out:</td>
+                    <td class="number">{{if clock_history.CLOCK_OUT}} {{>clock_history.CLOCK_OUT}} {{else}} N/A{{/if}}</td>
+                </tr>
+                <tr>
+                    <td class="left">Hours worked:</td>
+                    <td class="number">{{>clock_history.hoursWorked}}</td>
+                </tr>
+            </table>
+        </div>
+    </div>
+</body>
+
+</html>
