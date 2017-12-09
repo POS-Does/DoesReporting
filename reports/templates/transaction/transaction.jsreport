@@ -114,19 +114,14 @@
             </table>
         </div>
 
-        <div class="transaction-info">
-            <table>
-                <tr>
-                    <td class="left">{{:transaction.DATE}}</td>
-                    <td class="right">{{:transaction.TIME}}</td>
-                </tr>
-            </table>
-        </div>
-
         <div class="center large" style="font-size: 18px;">SALE</div>
 
         <div class="transaction-details">
             <table>
+                    <tr>
+                        <td class="left">TXN Time:</td>
+                        <td>{{:transaction.TIME}}</td>
+                    </tr>
                     <tr>
                         <td class="left">ACCT:</td>
                         <td>************{{:transaction.TRANSACTION_CARD_NUMBER}}</td>
