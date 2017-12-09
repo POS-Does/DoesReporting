@@ -1,0 +1,176 @@
+<html>
+
+<head>
+    <style>
+        .receipt {
+            font-size: 15px;
+            line-height: 70%;
+            font-family: sans-serif;
+        }
+
+        .no-lh {
+            line-height: 100%;
+        }
+
+        .company {
+            text-align: center;
+        }
+
+        .company span {
+            display: block;
+        }
+
+        .delivery {
+            text-align: center;
+        }
+
+        .delivery span {
+            display: block;
+        }
+
+        .line-block {
+            text-align: center;
+        }
+
+        .small {
+            font-size: 12px;
+        }
+
+        .normal {
+            font-size: 15px;
+            line-height: 100%;
+        }
+
+        .large {
+            font-size: 18px;
+            line-height: 100%;
+        }
+
+        .left {
+            text-align: left;
+        }
+
+        .center {
+            text-align: center;
+        }
+
+        .right {
+            text-align: right;
+        }
+
+        .italic {
+            font-style: italic;
+        }
+
+        .bold {
+            font-style: bold;
+        }
+
+        .underline {
+            font-style: underline;
+        }
+
+        table {
+            width: 100%;
+        }
+
+        td.modifier { padding-left:1em; }
+    </style>
+</head>
+
+<body>
+    <div class="receipt">
+        <div class="company no-lh">
+            <span class="large">{{:company.COMPANY_NAME}}</span>
+            <span>{{:company.ADDRESS_FIRST}}</span> {{if company.ADDRESS_SECOND !== null}}
+            <span>{{:company.ADDRESS_SECOND}}</span> {{/if}}
+            <span>{{:company.ADDRESS_CITY}}, {{:company.ADDRESS_STATE}} {{:company.ADDRESS_ZIP}}</span>
+            <span>{{:company.COMPANY_TELEPHONE}}</span>
+        </div>
+
+        <div class="ticket-info">
+            <table>
+                <tr>
+                    <td class="left">Server: {{:transaction.ticket.USER_NAME}}</td>
+                    <td class="right">{{:transaction.ticket.DATE}}</td>
+                </tr>
+                <tr>
+                    <td class="left">
+                        {{if transaction.ticket.TABLE_NUMBER}} Table: {{:transaction.ticket.TABLE_NUMBER}} {{else transaction.ticket.CUSTOMER_NAME}} Customer: {{:transaction.ticket.CUSTOMER_NAME}}
+                        {{/if}}
+                    </td>
+                    <td class="right">{{:transaction.ticket.TIME}}</td>
+                </tr>
+                <tr>
+                    <td class="left">Guests: {{:transaction.ticket.NUMBER_OF_GUESTS}} 
+
+                    {{if transaction.ticket.togo}}
+                        TO GO
+                    {{/if}}
+                    
+                    </td>
+                    <td class="right">{{:transaction.ticket.ID}}</td>
+                </tr>
+            </table>
+        </div>
+
+        <div class="center large" style="font-size: 18px;">SALE</div>
+
+        <div class="transaction-details">
+            <table>
+                    <tr>
+                        <td class="left">TXN Time:</td>
+                        <td>{{:transaction.TIME}}</td>
+                    </tr>
+                    <tr>
+                        <td class="left">ACCT:</td>
+                        <td>************{{:transaction.TRANSACTION_CARD_NUMBER}}</td>
+                    </tr>
+                    <tr>
+                        <td class="left">APP NAME:</td>
+                        <td>{{:transaction.TRANSACTION_CARD_TYPE}}</td>
+                    </tr>
+                    <tr>
+                        <td class="left">ENTRY:</td>
+                        <td>{{:transaction.TRANSACTION_CHARGE_TYPE}}</td>
+                    </tr>
+                    <tr>
+                        <td class="left">HREF:</td>
+                        <td>{{:transaction.HREF}}</td>
+                    </tr>
+                    <tr>
+                        <td class="left">AID:</td>
+                        <td>{{:transaction.AID}}</td>
+                    </tr>
+                    <tr>
+                        <td class="left">APPROVAL:</td>
+                        <td>{{:transaction.TRANSACTION_AUTHORIZATION}}</td>
+                    </tr>
+                    
+            </table>
+        </div>
+
+        <div class="totals">
+            <table>
+                <tr>
+                    <td class="left large">{{if transaction.tip}}SUB{{/if}}TOTAL:</td>
+                    <td class="right" style="font-size: 18px;">{{:transaction.TRANSACTION_TICKET_TOTAL}}</td>
+                    
+                </tr>
+                {{if transaction.TRANSACTION_PARTIAL}} 
+                <tr>
+                    <td class="left large">PARTIAL AMOUNT CHARGED:</td>
+                    <td class="right" style="font-size: 18px;">{{:transaction.TRANSACTION_PARTIAL}}</td>
+                </tr>
+                <tr>
+                    <td class="left large">BALANCE:</td>
+                    <td class="right" style="font-size: 18px;">{{:transaction.BALANCE}}</td>
+                </tr>
+                {{/if}}
+            </table>
+            <div class="center large" style="font-size: 18px;">VOID</div>
+        </div>
+    </div>
+</body>
+
+</html>
