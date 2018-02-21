@@ -1,5 +1,11 @@
 # Report Server
 
+Only applicable for POS Does projects. Code is here for learning purposes only.
+
+## Description
+
+The reporting framework that will allow receipts and administrative reports to be dropped in and generated using a node js server.
+
 ## Overview
 
 Tested with:
